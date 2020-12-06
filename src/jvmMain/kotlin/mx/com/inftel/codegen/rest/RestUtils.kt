@@ -21,19 +21,19 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 import javax.ws.rs.core.SecurityContext
 
-const val GENERATE_TOKEN_PROPERTY = "mx.com.inftel.codegen.GENERATE_TOKEN"
+const val GENERATE_ANTI_REPLAY_TOKEN_PROPERTY = "mx.com.inftel.codegen.GENERATE_ANTI_REPLAY_TOKEN"
 
-fun SecurityContext.checkUsuario(): CodegenPrincipal {
-    val principal = userPrincipal as? CodegenPrincipal ?: throw newNotAuthorizedException("Not Authorized Exception")
-    return principal
+fun SecurityContext.checkUserPrincipal(): CodegenPrincipal {
+    return userPrincipal as? CodegenPrincipal
+        ?: throw newNotAuthorizedException("Not Authorized Exception")
 }
 
-fun SecurityContext.checkSuperUsuario(): CodegenPrincipal {
-    val principal = checkUsuario()
-    if (!principal.superUsuario) {
+fun SecurityContext.checkSuperuserPrincipal(): CodegenPrincipal {
+    val codegenPrincipal = checkUserPrincipal()
+    if (!codegenPrincipal.superuser) {
         throw newForbiddenException("Forbidden Exception")
     }
-    return principal
+    return codegenPrincipal
 }
 
 fun newBadRequestException(message: String?): BadRequestException {

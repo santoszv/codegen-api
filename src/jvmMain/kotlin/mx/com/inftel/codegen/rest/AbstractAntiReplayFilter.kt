@@ -25,14 +25,14 @@ abstract class AbstractAntiReplayFilter : ContainerRequestFilter, ContainerRespo
         }
         if (token.leastSignificantBits == 0L && token.mostSignificantBits == 0L) {
             if ("HEAD".contentEquals(requestContext.method)) {
-                requestContext.setProperty(GENERATE_TOKEN_PROPERTY, true)
+                requestContext.setProperty(GENERATE_ANTI_REPLAY_TOKEN_PROPERTY, true)
                 requestContext.abortWith(Response.noContent().build())
             } else {
                 throw AntiReplayException()
             }
         } else {
             if (consumeToken(token)) {
-                requestContext.setProperty(GENERATE_TOKEN_PROPERTY, true)
+                requestContext.setProperty(GENERATE_ANTI_REPLAY_TOKEN_PROPERTY, true)
             } else {
                 throw AntiReplayException()
             }
@@ -40,7 +40,7 @@ abstract class AbstractAntiReplayFilter : ContainerRequestFilter, ContainerRespo
     }
 
     override fun filter(requestContext: ContainerRequestContext, responseContext: ContainerResponseContext) {
-        if (requestContext.getProperty(GENERATE_TOKEN_PROPERTY) == true) {
+        if (requestContext.getProperty(GENERATE_ANTI_REPLAY_TOKEN_PROPERTY) == true) {
             responseContext.headers.putSingle(ANTI_REPLAY_TOKEN_HEADER, produceToken())
         }
     }
