@@ -4,6 +4,7 @@ package mx.com.inftel.codegen.rest
 
 import mx.com.inftel.codegen.data_access.MetaModelPath
 import mx.com.inftel.codegen.dto.ExceptionDto
+import mx.com.inftel.codegen.exceptions.BadParameterException
 import mx.com.inftel.codegen.jaspic.CodegenPrincipal
 import java.beans.Introspector
 import java.lang.reflect.Modifier
@@ -36,49 +37,49 @@ fun SecurityContext.checkSuperuserPrincipal(): CodegenPrincipal {
     return codegenPrincipal
 }
 
-fun newBadRequestException(message: String?): BadRequestException {
+fun newBadRequestException(message: String? = null): BadRequestException {
     val exceptionDto = ExceptionDto()
-    exceptionDto.fqName = BadRequestException::class.java.name
-    exceptionDto.message = message!!
+    exceptionDto.name = BadRequestException::class.java.name
+    exceptionDto.message = message ?: "Bad Request Exception"
     val response = Response.status(Response.Status.BAD_REQUEST)
             .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.fqName)
+            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.name)
             .entity(exceptionDto)
             .build()
     return BadRequestException(response)
 }
 
-fun newNotAuthorizedException(message: String?): NotAuthorizedException {
+fun newNotAuthorizedException(message: String? = null): NotAuthorizedException {
     val exceptionDto = ExceptionDto()
-    exceptionDto.fqName = NotAuthorizedException::class.java.name
-    exceptionDto.message = message!!
+    exceptionDto.name = NotAuthorizedException::class.java.name
+    exceptionDto.message = message ?: "Not Authorized Exception"
     val response = Response.status(Response.Status.UNAUTHORIZED)
             .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.fqName)
+            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.name)
             .entity(exceptionDto)
             .build()
     return NotAuthorizedException(response)
 }
 
-fun newForbiddenException(message: String?): ForbiddenException {
+fun newForbiddenException(message: String? = null): ForbiddenException {
     val exceptionDto = ExceptionDto()
-    exceptionDto.fqName = ForbiddenException::class.java.name
-    exceptionDto.message = message!!
+    exceptionDto.name = ForbiddenException::class.java.name
+    exceptionDto.message = message ?: "Forbidden Exception"
     val response = Response.status(Response.Status.FORBIDDEN)
             .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.fqName)
+            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.name)
             .entity(exceptionDto)
             .build()
     return ForbiddenException(response)
 }
 
-fun newNotFoundException(message: String?): NotFoundException {
+fun newNotFoundException(message: String? = null): NotFoundException {
     val exceptionDto = ExceptionDto()
-    exceptionDto.fqName = NotFoundException::class.java.name
-    exceptionDto.message = message!!
+    exceptionDto.name = NotFoundException::class.java.name
+    exceptionDto.message = message ?: "Not Found Exception"
     val response = Response.status(Response.Status.NOT_FOUND)
             .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.fqName)
+            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.name)
             .entity(exceptionDto)
             .build()
     return NotFoundException(response)
@@ -87,19 +88,19 @@ fun newNotFoundException(message: String?): NotFoundException {
 fun MutableList<Predicate>.fillPredicates(predicates: List<String>, criteriaBuilder: CriteriaBuilder, root: Root<out Any>, dtoType: Class<out Any>) {
     for (predicate in predicates) {
         if (predicate.isBlank()) {
-            throw BadParameterException("Bad Parameter Exception")
+            throw BadParameterException()
         }
         val t = predicate.split(":", limit = 3)
         if (t.size != 3) {
-            throw BadParameterException("Bad Parameter Exception")
+            throw BadParameterException()
         }
         val operator = t[0]
         if (operator.isBlank()) {
-            throw BadParameterException("Bad Parameter Exception")
+            throw BadParameterException()
         }
         val propertyName = t[1]
         if (propertyName.isBlank()) {
-            throw BadParameterException("Bad Parameter Exception")
+            throw BadParameterException()
         }
         val valueAsString = t[2]
         when (operator) {
@@ -151,7 +152,7 @@ fun MutableList<Predicate>.fillPredicates(predicates: List<String>, criteriaBuil
                 val valueOrNull = valueAsString.valueOrNull<String>(metamodelPath.model.bindableJavaType)
                 add(criteriaBuilder.notLike(metamodelPath, valueOrNull))
             }
-            else -> throw BadParameterException("Bad Parameter Exception")
+            else -> throw BadParameterException()
         }
     }
 }
@@ -159,24 +160,24 @@ fun MutableList<Predicate>.fillPredicates(predicates: List<String>, criteriaBuil
 fun MutableList<Order>.fillOrders(orders: List<String>, criteriaBuilder: CriteriaBuilder, root: Root<out Any>, dtoType: Class<out Any>) {
     for (order in orders) {
         if (order.isBlank()) {
-            throw BadParameterException("Bad Parameter Exception")
+            throw BadParameterException()
         }
         val t = order.split(":", limit = 2).toTypedArray()
         if (t.size != 2) {
-            throw BadParameterException("Bad Parameter Exception")
+            throw BadParameterException()
         }
         val operator = t[0]
         if (operator.isBlank()) {
-            throw BadParameterException("Bad Parameter Exception")
+            throw BadParameterException()
         }
         val propertyName = t[1]
         if (operator.isBlank()) {
-            throw BadParameterException("Bad Parameter Exception")
+            throw BadParameterException()
         }
         when (operator) {
             "asc" -> add(criteriaBuilder.asc(dtoType.getMetamodelPath<Any>(root, propertyName)))
             "desc" -> add(criteriaBuilder.desc(dtoType.getMetamodelPath<Any>(root, propertyName)))
-            else -> throw BadParameterException("Bad Parameter Exception")
+            else -> throw BadParameterException()
         }
     }
 }
@@ -204,7 +205,7 @@ private fun <T : Any> Class<out Any>.getMetamodelPath(root: Root<out Any>, prope
             }
         }
     }
-    throw BadParameterException("Bad Parameter Exception")
+    throw BadParameterException()
 }
 
 @Suppress("UNCHECKED_CAST")

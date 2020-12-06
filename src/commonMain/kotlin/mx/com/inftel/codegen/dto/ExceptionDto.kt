@@ -11,7 +11,7 @@ class ExceptionDto {
     /**
      * Fully qualified name of exception
      */
-    var fqName: String = ""
+    var name: String = ""
 
     /**
      * Message of exception

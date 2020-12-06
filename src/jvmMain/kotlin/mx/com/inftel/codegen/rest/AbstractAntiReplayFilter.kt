@@ -1,5 +1,6 @@
 package mx.com.inftel.codegen.rest
 
+import mx.com.inftel.codegen.exceptions.AntiReplayException
 import java.util.*
 import javax.ws.rs.container.ContainerRequestContext
 import javax.ws.rs.container.ContainerRequestFilter
