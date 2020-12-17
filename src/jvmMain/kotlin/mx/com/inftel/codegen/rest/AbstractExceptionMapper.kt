@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 import javax.ws.rs.ext.ExceptionMapper
 
-abstract class AbstractExceptionMapper<T : Throwable?> : ExceptionMapper<T> {
+abstract class AbstractExceptionMapper<T : Exception> : ExceptionMapper<T> {
 
     protected abstract fun isLogged(exception: T): Boolean
 
@@ -16,13 +16,13 @@ abstract class AbstractExceptionMapper<T : Throwable?> : ExceptionMapper<T> {
 
     protected abstract fun getLoggerLevel(exception: T): Level
 
-    protected abstract fun getLoggerMessage(exception: T): String?
+    protected abstract fun getLoggerMessage(exception: T): String
 
-    protected abstract fun getName(exception: T): String
+    protected abstract fun getExceptionName(exception: T): String
 
-    protected abstract fun getMessage(exception: T): String
+    protected abstract fun getExceptionMessage(exception: T): String
 
-    protected abstract fun getCause(exception: T): ExceptionDto?
+    protected abstract fun getExceptionCause(exception: T): ExceptionDto?
 
     protected abstract fun getConstraintViolations(exception: T): List<ConstraintViolationDto>
 
@@ -34,9 +34,9 @@ abstract class AbstractExceptionMapper<T : Throwable?> : ExceptionMapper<T> {
             logger.log(getLoggerLevel(exception), getLoggerMessage(exception), exception)
         }
         val exceptionDto = ExceptionDto()
-        exceptionDto.name = getName(exception)
-        exceptionDto.message = getMessage(exception)
-        exceptionDto.cause = getCause(exception)
+        exceptionDto.name = getExceptionName(exception)
+        exceptionDto.message = getExceptionMessage(exception)
+        exceptionDto.cause = getExceptionCause(exception)
         exceptionDto.constraintViolations = getConstraintViolations(exception)
         return Response.status(getResponseStatus(exception))
             .type(MediaType.APPLICATION_JSON_TYPE)
