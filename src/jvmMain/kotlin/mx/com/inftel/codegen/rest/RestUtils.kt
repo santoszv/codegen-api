@@ -43,7 +43,7 @@ fun newBadRequestException(message: String? = null): BadRequestException {
     exceptionDto.message = message ?: "Bad Request Exception"
     val response = Response.status(Response.Status.BAD_REQUEST)
             .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.name)
+            .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
             .entity(exceptionDto)
             .build()
     return BadRequestException(response)
@@ -55,7 +55,7 @@ fun newNotAuthorizedException(message: String? = null): NotAuthorizedException {
     exceptionDto.message = message ?: "Not Authorized Exception"
     val response = Response.status(Response.Status.UNAUTHORIZED)
             .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.name)
+            .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
             .entity(exceptionDto)
             .build()
     return NotAuthorizedException(response)
@@ -67,7 +67,7 @@ fun newForbiddenException(message: String? = null): ForbiddenException {
     exceptionDto.message = message ?: "Forbidden Exception"
     val response = Response.status(Response.Status.FORBIDDEN)
             .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.name)
+            .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
             .entity(exceptionDto)
             .build()
     return ForbiddenException(response)
@@ -79,7 +79,7 @@ fun newNotFoundException(message: String? = null): NotFoundException {
     exceptionDto.message = message ?: "Not Found Exception"
     val response = Response.status(Response.Status.NOT_FOUND)
             .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.name)
+            .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
             .entity(exceptionDto)
             .build()
     return NotFoundException(response)

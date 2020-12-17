@@ -40,7 +40,7 @@ abstract class AbstractExceptionMapper<T : Exception> : ExceptionMapper<T> {
         exceptionDto.constraintViolations = getConstraintViolations(exception)
         return Response.status(getResponseStatus(exception))
             .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_CLASS_NAME_HEADER, exceptionDto.name)
+            .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
             .entity(exceptionDto)
             .build()
     }
