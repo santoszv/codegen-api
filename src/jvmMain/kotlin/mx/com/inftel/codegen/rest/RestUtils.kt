@@ -2,6 +2,7 @@
 
 package mx.com.inftel.codegen.rest
 
+import mx.com.inftel.codegen.EXCEPTION_NAME_HEADER
 import mx.com.inftel.codegen.data_access.MetaModelPath
 import mx.com.inftel.codegen.dto.ExceptionDto
 import mx.com.inftel.codegen.exceptions.BadParameterException

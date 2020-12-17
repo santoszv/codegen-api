@@ -1,6 +1,6 @@
 package mx.com.inftel.codegen.jaspic
 
-import mx.com.inftel.codegen.rest.AUTHENTICATION_TOKEN_HEADER
+import mx.com.inftel.codegen.AUTHENTICATION_TOKEN_HEADER
 import mx.com.inftel.codegen.servlet.AUTH_TOKEN_ATTRIBUTE
 import java.util.*
 import java.util.logging.Level

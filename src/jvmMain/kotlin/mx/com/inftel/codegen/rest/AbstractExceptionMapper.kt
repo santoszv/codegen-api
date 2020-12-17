@@ -1,5 +1,6 @@
 package mx.com.inftel.codegen.rest
 
+import mx.com.inftel.codegen.EXCEPTION_NAME_HEADER
 import mx.com.inftel.codegen.dto.ConstraintViolationDto
 import mx.com.inftel.codegen.dto.ExceptionDto
 import java.util.logging.Level
