@@ -25,13 +25,13 @@ import javax.ws.rs.core.SecurityContext
 
 fun SecurityContext.checkUserPrincipal(): CodegenPrincipal {
     return userPrincipal as? CodegenPrincipal
-        ?: throw newNotAuthorizedException("Not Authorized Exception")
+        ?: throw newNotAuthorizedException()
 }
 
 fun SecurityContext.checkSuperuserPrincipal(): CodegenPrincipal {
     val codegenPrincipal = checkUserPrincipal()
-    if (!codegenPrincipal.superuser) {
-        throw newForbiddenException("Forbidden Exception")
+    if (!codegenPrincipal.isSuperuser) {
+        throw newForbiddenException()
     }
     return codegenPrincipal
 }

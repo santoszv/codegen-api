@@ -3,19 +3,19 @@ package mx.com.inftel.codegen.jaspic
 import java.security.Principal
 import java.util.*
 
-class CodegenPrincipal(val token: UUID, val username: String, val superuser: Boolean, val id: Long?, val uuid: UUID?) : Principal {
+class CodegenPrincipal(val token: UUID, val username: String, val isSuperuser: Boolean, val userId: Long?, val userUuid: UUID?) : Principal {
 
-    constructor(token: UUID, username: String, superuser: Boolean) : this(token, username, superuser, null, null)
+    constructor(token: UUID, username: String, isSuperuser: Boolean) : this(token, username, isSuperuser, null, null)
 
-    constructor(token: UUID, username: String, superuser: Boolean, id: Long) : this(token, username, superuser, id, null)
+    constructor(token: UUID, username: String, isSuperuser: Boolean, userId: Long) : this(token, username, isSuperuser, userId, null)
 
-    constructor(token: UUID, username: String, superuser: Boolean, uuid: UUID) : this(token, username, superuser, null, uuid)
+    constructor(token: UUID, username: String, isSuperuser: Boolean, userUuid: UUID) : this(token, username, isSuperuser, null, userUuid)
 
     override fun getName(): String {
         return username
     }
 
     override fun toString(): String {
-        return "CodegenPrincipal(token=$token, username='$username', superuser=$superuser, id=$id, uuid=$uuid)"
+        return "CodegenPrincipal(token=$token, username='$username', isSuperuser=$isSuperuser, userId=$userId, userUuid=$userUuid)"
     }
 }
