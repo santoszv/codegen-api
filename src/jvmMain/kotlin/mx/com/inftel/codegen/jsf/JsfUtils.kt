@@ -1,4 +1,5 @@
 @file:JvmName("JsfUtils")
+@file:Suppress("unused")
 
 package mx.com.inftel.codegen.jsf
 

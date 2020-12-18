@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate", "unused")
+
 package mx.com.inftel.codegen.jaspic
 
 import java.security.Principal

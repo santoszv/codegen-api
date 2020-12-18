@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package mx.com.inftel.codegen.browser
 
 import org.w3c.dom.Element

@@ -1,4 +1,5 @@
 @file:JvmName("CodegenConstants")
+@file:Suppress("unused")
 
 package mx.com.inftel.codegen
 

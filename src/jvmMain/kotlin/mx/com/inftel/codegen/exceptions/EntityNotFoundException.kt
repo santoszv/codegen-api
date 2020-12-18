@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package mx.com.inftel.codegen.exceptions
 
 import javax.ejb.ApplicationException

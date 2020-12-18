@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate", "unused")
+
 package mx.com.inftel.codegen.rest
 
 import kotlinx.serialization.SerializationException

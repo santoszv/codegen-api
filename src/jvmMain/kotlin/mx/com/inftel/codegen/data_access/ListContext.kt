@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package mx.com.inftel.codegen.data_access
 
 import javax.persistence.LockModeType

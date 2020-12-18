@@ -1,4 +1,5 @@
 @file:JvmName("RestUtils")
+@file:Suppress("unused", "RemoveExplicitTypeArguments")
 
 package mx.com.inftel.codegen.rest
 

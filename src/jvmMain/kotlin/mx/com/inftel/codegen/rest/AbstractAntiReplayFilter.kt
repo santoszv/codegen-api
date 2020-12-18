@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package mx.com.inftel.codegen.rest
 
 import mx.com.inftel.codegen.ANTI_REPLAY_TOKEN_HEADER
