@@ -2,16 +2,11 @@
 
 package mx.com.inftel.codegen.jaspic
 
+import mx.com.inftel.codegen.NULL_UUID
 import java.security.Principal
 import java.util.*
 
-class CodegenPrincipal(val authToken: UUID, val username: String, val isSuperuser: Boolean, val userId: Long?, val userUuid: UUID?) : Principal {
-
-    constructor(token: UUID, username: String, isSuperuser: Boolean) : this(token, username, isSuperuser, null, null)
-
-    constructor(token: UUID, username: String, isSuperuser: Boolean, userId: Long) : this(token, username, isSuperuser, userId, null)
-
-    constructor(token: UUID, username: String, isSuperuser: Boolean, userUuid: UUID) : this(token, username, isSuperuser, null, userUuid)
+class CodegenPrincipal(val authToken: UUID, val username: String, val isSuperuser: Boolean, val userId: Long = 0, val userUuid: UUID = UUID.fromString(NULL_UUID)) : Principal {
 
     override fun getName(): String {
         return username
