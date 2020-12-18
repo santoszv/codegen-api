@@ -9,8 +9,6 @@ import java.util.logging.Logger
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-const val AUTH_TOKEN_ATTRIBUTE = "mx.com.inftel.codegen.AUTH_TOKEN"
-
 fun HttpServletRequest.setAuthToken(token: UUID) {
     val session = getSession(true)
     session.setAttribute(AUTH_TOKEN_ATTRIBUTE, token)

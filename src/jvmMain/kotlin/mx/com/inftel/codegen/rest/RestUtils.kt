@@ -23,8 +23,6 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 import javax.ws.rs.core.SecurityContext
 
-const val GENERATE_ANTI_REPLAY_TOKEN_PROPERTY = "mx.com.inftel.codegen.GENERATE_ANTI_REPLAY_TOKEN"
-
 fun SecurityContext.checkUserPrincipal(): CodegenPrincipal {
     return userPrincipal as? CodegenPrincipal
         ?: throw newNotAuthorizedException("Not Authorized Exception")
