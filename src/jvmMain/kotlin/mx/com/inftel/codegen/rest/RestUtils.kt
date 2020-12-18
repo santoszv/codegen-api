@@ -38,7 +38,7 @@ fun SecurityContext.checkSuperuserPrincipal(): CodegenPrincipal {
 
 fun newBadRequestException(message: String? = null): BadRequestException {
     val exceptionDto = ExceptionDto()
-    exceptionDto.name = BadRequestException::class.java.name
+    exceptionDto.name = "javax.ws.rs.BadRequestException"
     exceptionDto.message = message ?: "Bad Request Exception"
     val response = Response.status(Response.Status.BAD_REQUEST)
             .type(MediaType.APPLICATION_JSON_TYPE)
@@ -50,7 +50,7 @@ fun newBadRequestException(message: String? = null): BadRequestException {
 
 fun newNotAuthorizedException(message: String? = null): NotAuthorizedException {
     val exceptionDto = ExceptionDto()
-    exceptionDto.name = NotAuthorizedException::class.java.name
+    exceptionDto.name = "javax.ws.rs.NotAuthorizedException"
     exceptionDto.message = message ?: "Not Authorized Exception"
     val response = Response.status(Response.Status.UNAUTHORIZED)
             .type(MediaType.APPLICATION_JSON_TYPE)
@@ -62,7 +62,7 @@ fun newNotAuthorizedException(message: String? = null): NotAuthorizedException {
 
 fun newForbiddenException(message: String? = null): ForbiddenException {
     val exceptionDto = ExceptionDto()
-    exceptionDto.name = ForbiddenException::class.java.name
+    exceptionDto.name = "javax.ws.rs.ForbiddenException"
     exceptionDto.message = message ?: "Forbidden Exception"
     val response = Response.status(Response.Status.FORBIDDEN)
             .type(MediaType.APPLICATION_JSON_TYPE)
@@ -74,7 +74,7 @@ fun newForbiddenException(message: String? = null): ForbiddenException {
 
 fun newNotFoundException(message: String? = null): NotFoundException {
     val exceptionDto = ExceptionDto()
-    exceptionDto.name = NotFoundException::class.java.name
+    exceptionDto.name = "javax.ws.rs.NotFoundException"
     exceptionDto.message = message ?: "Not Found Exception"
     val response = Response.status(Response.Status.NOT_FOUND)
             .type(MediaType.APPLICATION_JSON_TYPE)

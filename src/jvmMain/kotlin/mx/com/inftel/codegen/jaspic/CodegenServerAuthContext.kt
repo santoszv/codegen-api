@@ -1,6 +1,7 @@
 package mx.com.inftel.codegen.jaspic
 
 import mx.com.inftel.codegen.AUTHENTICATION_TOKEN_HEADER
+import mx.com.inftel.codegen.isNull
 import mx.com.inftel.codegen.servlet.AUTH_TOKEN_ATTRIBUTE
 import java.util.*
 import java.util.logging.Level
@@ -22,7 +23,7 @@ class CodegenServerAuthContext(private val validateAuthToken: (UUID) -> CodegenP
             handler.handle(arrayOf(CallerPrincipalCallback(clientSubject, principal), GroupPrincipalCallback(clientSubject, null)))
             AuthStatus.SUCCESS
         } catch (ex: Exception) {
-            Logger.getLogger("mx.com.inftel.codegen.jaspic.CodegenServerAuthContext").log(Level.SEVERE, "CodegenServerAuthContext.validateRequest", ex)
+            Logger.getLogger("mx.com.inftel.codegen.jaspic.CodegenServerAuthContext").log(Level.SEVERE, "Exception while validating request", ex)
             messageInfo.sendError()
             AuthStatus.SEND_FAILURE
         }
@@ -39,7 +40,7 @@ class CodegenServerAuthContext(private val validateAuthToken: (UUID) -> CodegenP
         } catch (ex: IllegalArgumentException) {
             null
         }
-        if ((authToken == null) || (authToken.leastSignificantBits == 0L && authToken.mostSignificantBits == 0L)) {
+        if (authToken == null || authToken.isNull) {
             return null
         }
         return validateAuthToken(authToken)
@@ -48,9 +49,9 @@ class CodegenServerAuthContext(private val validateAuthToken: (UUID) -> CodegenP
     private fun MessageInfo.validateSession(): CodegenPrincipal? {
         val httpServletRequest = requestMessage as HttpServletRequest
         val session = httpServletRequest.getSession(false)
-                ?: return null
+            ?: return null
         val authToken: UUID? = session.getAttribute(AUTH_TOKEN_ATTRIBUTE) as? UUID
-        if ((authToken == null) || (authToken.leastSignificantBits == 0L && authToken.mostSignificantBits == 0L)) {
+        if (authToken == null || authToken.isNull) {
             return null
         }
         return validateAuthToken(authToken)

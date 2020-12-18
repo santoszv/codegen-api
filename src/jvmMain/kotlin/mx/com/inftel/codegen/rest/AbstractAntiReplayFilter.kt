@@ -2,6 +2,7 @@ package mx.com.inftel.codegen.rest
 
 import mx.com.inftel.codegen.ANTI_REPLAY_TOKEN_HEADER
 import mx.com.inftel.codegen.exceptions.AntiReplayException
+import mx.com.inftel.codegen.isNull
 import java.util.*
 import javax.ws.rs.container.ContainerRequestContext
 import javax.ws.rs.container.ContainerRequestFilter
@@ -25,7 +26,7 @@ abstract class AbstractAntiReplayFilter : ContainerRequestFilter, ContainerRespo
         } catch (ex: IllegalArgumentException) {
             throw AntiReplayException()
         }
-        if (token.leastSignificantBits == 0L && token.mostSignificantBits == 0L) {
+        if (token.isNull) {
             if ("HEAD".contentEquals(requestContext.method)) {
                 requestContext.setProperty(GENERATE_ANTI_REPLAY_TOKEN_PROPERTY, true)
                 requestContext.abortWith(Response.noContent().build())

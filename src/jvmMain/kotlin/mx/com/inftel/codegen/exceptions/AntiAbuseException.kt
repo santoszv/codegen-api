@@ -3,4 +3,4 @@ package mx.com.inftel.codegen.exceptions
 import javax.ejb.ApplicationException
 
 @ApplicationException(rollback = true)
-class AntiAbuseException : RuntimeException("Anti Abuse Exception")
+class AntiAbuseException(message: String = "Anti Abuse Exception") : RuntimeException(message)

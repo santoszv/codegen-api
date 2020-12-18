@@ -18,6 +18,6 @@ fun HttpServletResponse.sendError() {
     try {
         sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR)
     } catch (ex: IOException) {
-        Logger.getLogger("mx.com.inftel.codegen.jaspic.JaspicUtils").log(Level.SEVERE, "HttpServletResponse.sendError", ex)
+        Logger.getLogger("mx.com.inftel.codegen.servlet.ServletUtils").log(Level.WARNING, "Exception while sending error response", ex)
     }
 }
