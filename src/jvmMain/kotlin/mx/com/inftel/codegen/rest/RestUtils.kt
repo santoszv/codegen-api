@@ -40,7 +40,7 @@ fun SecurityContext.checkSuperuserPrincipal(): CodegenPrincipal {
 fun newBadRequestException(message: String? = null): BadRequestException {
     val exceptionDto = ExceptionDto()
     exceptionDto.name = "javax.ws.rs.BadRequestException"
-    exceptionDto.message = message ?: "Bad Request Exception"
+    exceptionDto.message = message ?: "Bad request"
     val response = Response.status(Response.Status.BAD_REQUEST)
             .type(MediaType.APPLICATION_JSON_TYPE)
             .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
@@ -52,7 +52,7 @@ fun newBadRequestException(message: String? = null): BadRequestException {
 fun newNotAuthorizedException(message: String? = null): NotAuthorizedException {
     val exceptionDto = ExceptionDto()
     exceptionDto.name = "javax.ws.rs.NotAuthorizedException"
-    exceptionDto.message = message ?: "Not Authorized Exception"
+    exceptionDto.message = message ?: "Not authorized"
     val response = Response.status(Response.Status.UNAUTHORIZED)
             .type(MediaType.APPLICATION_JSON_TYPE)
             .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
@@ -64,7 +64,7 @@ fun newNotAuthorizedException(message: String? = null): NotAuthorizedException {
 fun newForbiddenException(message: String? = null): ForbiddenException {
     val exceptionDto = ExceptionDto()
     exceptionDto.name = "javax.ws.rs.ForbiddenException"
-    exceptionDto.message = message ?: "Forbidden Exception"
+    exceptionDto.message = message ?: "Forbidden"
     val response = Response.status(Response.Status.FORBIDDEN)
             .type(MediaType.APPLICATION_JSON_TYPE)
             .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
@@ -76,7 +76,7 @@ fun newForbiddenException(message: String? = null): ForbiddenException {
 fun newNotFoundException(message: String? = null): NotFoundException {
     val exceptionDto = ExceptionDto()
     exceptionDto.name = "javax.ws.rs.NotFoundException"
-    exceptionDto.message = message ?: "Not Found Exception"
+    exceptionDto.message = message ?: "Not found"
     val response = Response.status(Response.Status.NOT_FOUND)
             .type(MediaType.APPLICATION_JSON_TYPE)
             .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
