@@ -15,7 +15,7 @@ interface ElementWrapper {
          * Gets the wrapped element.
          */
         fun getWrappedElement(elementWrapper: Any): Element {
-            return elementWrapper.asDynamic()["kotlinWrappedElement$"] as Element
+            return elementWrapper.asDynamic()["kotlinWrappedElement$"].unsafeCast<Element>()
         }
 
         /**
