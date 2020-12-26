@@ -1,10 +1,11 @@
-@file:Suppress("unused")
+@file:Suppress("DEPRECATION", "unused")
 
 package mx.com.inftel.codegen.browser
 
 import kotlinx.browser.document
 import org.w3c.dom.Element
 
+@Deprecated("Deprecated")
 class ElementList<T>(parent: Any) : MutableList<T> {
 
     private val delegate = mutableListOf<T>()

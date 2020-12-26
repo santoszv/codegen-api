@@ -3,6 +3,7 @@ package mx.com.inftel.codegen.browser
 /**
  * Children list iterator of templated element
  */
+@Deprecated("Deprecated")
 class ElementListIterator<T>(private val delegate: MutableListIterator<T>) : MutableListIterator<T> {
 
     override fun hasPrevious(): Boolean {

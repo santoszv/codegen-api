@@ -7,6 +7,7 @@ import org.w3c.dom.Element
 /**
  * Interface marker for an element wrapper
  */
+@Deprecated("Deprecated")
 interface ElementWrapper {
 
     companion object {

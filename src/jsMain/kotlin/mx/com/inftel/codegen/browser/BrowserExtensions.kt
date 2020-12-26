@@ -1,4 +1,4 @@
-@file:Suppress("unused")
+@file:Suppress("DEPRECATION", "unused")
 
 package mx.com.inftel.codegen.browser
 
@@ -15,6 +15,7 @@ import kotlin.coroutines.suspendCoroutine
 val ElementWrapper.wrappedElement: Element
     get() = ElementWrapper.getWrappedElement(this)
 
+@Deprecated("Deprecated")
 fun ItemArrayLike<Node>.asElementList(): List<Element> = object : AbstractList<Element>() {
 
     override val size: Int get() = this@asElementList.length
@@ -28,6 +29,7 @@ fun ItemArrayLike<Node>.asElementList(): List<Element> = object : AbstractList<E
 /**
  * Make a request with co-routines
  */
+@Deprecated("Deprecated")
 suspend fun XMLHttpRequest.aSend(body: Any): Unit = suspendCoroutine { cont ->
     onreadystatechange = {
         if (readyState == XMLHttpRequest.DONE) {
