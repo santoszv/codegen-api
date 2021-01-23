@@ -12,6 +12,7 @@ import kotlin.coroutines.suspendCoroutine
 /**
  * Wrapped element
  */
+@Deprecated("Deprecated", ReplaceWith("ElementWrapper.getWrappedElement(this)"))
 val ElementWrapper.wrappedElement: Element
     get() = ElementWrapper.getWrappedElement(this)
 
