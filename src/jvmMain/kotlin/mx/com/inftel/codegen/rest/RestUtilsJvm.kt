@@ -1,3 +1,19 @@
+/*
+ *    Copyright 2021 Santos Zatarain Vera
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 @file:JvmName("RestUtils")
 @file:Suppress("unused", "RemoveExplicitTypeArguments")
 
@@ -42,10 +58,10 @@ fun newBadRequestException(message: String? = null): BadRequestException {
     exceptionDto.name = "javax.ws.rs.BadRequestException"
     exceptionDto.message = message ?: "Bad request"
     val response = Response.status(Response.Status.BAD_REQUEST)
-            .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
-            .entity(exceptionDto)
-            .build()
+        .type(MediaType.APPLICATION_JSON_TYPE)
+        .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
+        .entity(exceptionDto)
+        .build()
     return BadRequestException(response)
 }
 
@@ -54,10 +70,10 @@ fun newNotAuthorizedException(message: String? = null): NotAuthorizedException {
     exceptionDto.name = "javax.ws.rs.NotAuthorizedException"
     exceptionDto.message = message ?: "Not authorized"
     val response = Response.status(Response.Status.UNAUTHORIZED)
-            .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
-            .entity(exceptionDto)
-            .build()
+        .type(MediaType.APPLICATION_JSON_TYPE)
+        .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
+        .entity(exceptionDto)
+        .build()
     return NotAuthorizedException(response)
 }
 
@@ -66,10 +82,10 @@ fun newForbiddenException(message: String? = null): ForbiddenException {
     exceptionDto.name = "javax.ws.rs.ForbiddenException"
     exceptionDto.message = message ?: "Forbidden"
     val response = Response.status(Response.Status.FORBIDDEN)
-            .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
-            .entity(exceptionDto)
-            .build()
+        .type(MediaType.APPLICATION_JSON_TYPE)
+        .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
+        .entity(exceptionDto)
+        .build()
     return ForbiddenException(response)
 }
 
@@ -78,10 +94,10 @@ fun newNotFoundException(message: String? = null): NotFoundException {
     exceptionDto.name = "javax.ws.rs.NotFoundException"
     exceptionDto.message = message ?: "Not found"
     val response = Response.status(Response.Status.NOT_FOUND)
-            .type(MediaType.APPLICATION_JSON_TYPE)
-            .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
-            .entity(exceptionDto)
-            .build()
+        .type(MediaType.APPLICATION_JSON_TYPE)
+        .header(EXCEPTION_NAME_HEADER, exceptionDto.name)
+        .entity(exceptionDto)
+        .build()
     return NotFoundException(response)
 }
 
