@@ -1,5 +1,5 @@
 group = "mx.com.inftel.codegen"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -46,6 +46,13 @@ kotlin {
                 compileOnly("jakarta.ws.rs:jakarta.ws.rs-api:2.1.6")
             }
         }
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        javaParameters = true
+        jvmTarget = "1.8"
     }
 }
 
